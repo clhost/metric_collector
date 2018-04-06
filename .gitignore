@@ -10,7 +10,7 @@
 !*.java
 !*.md
 !libs
-!src/main/resources/
+!src/main/resources/*
 
 # Even if they are in subdirectories
 !*/
