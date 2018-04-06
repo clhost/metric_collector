@@ -62,7 +62,6 @@ public class RamInfoBuilder implements Builder<RAMInfo> {
                 } else {
                     throw new IllegalStateException("Couldn't find [" + notFoundTokens() + "]");
                 }
-                break; // hide "swap" line
             }
         }
 
