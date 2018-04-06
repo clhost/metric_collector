@@ -27,12 +27,13 @@ public class DisksInfo {
 
     @Override
     public String toString() {
-        builder.append("DISKS INFO: \n");
+        builder.append("disks: [");
 
         for (int i = 0; i < disks.size(); i++) {
-            builder.append("\t[").append(i).append("] ").append(disks.get(i).toString()).append("\n");
+            builder.append("(").append(i).append(")").append(disks.get(i).toString());
         }
 
+        builder.append("]");
         return builder.toString();
     }
 }
