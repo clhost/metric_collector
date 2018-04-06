@@ -14,3 +14,4 @@
 
 # Even if they are in subdirectories
 !*/
+.idea
