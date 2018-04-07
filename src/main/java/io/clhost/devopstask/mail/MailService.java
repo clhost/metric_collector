@@ -87,11 +87,4 @@ public class MailService {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) throws IOException {
-        MailService service = new MailService();
-        service.configure();
-        service.addReceivers();
-        service.send(new Mail("Test msg", "For you, bitch :)"));
-    }
 }

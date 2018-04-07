@@ -41,6 +41,7 @@ public class TaskManager {
         mailService.configure();
         mailService.addReceivers();
         HibernateUtil.start();
+        HibernateUtil.setNamesUTF8();
 
         System.out.println("Start");
         timer.schedule(new TimerTask() {
