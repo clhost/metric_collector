@@ -19,7 +19,7 @@ import java.util.TimerTask;
 
 public class TaskManager {
     private static final int START_TIME = 5 * 1000;
-    private static final int TIME = 20 * 1000;
+    private static final int TIME = 60 * 1000;
     private final SshService sshService;
     private final MailService mailService;
     private final ReportService reportService;
