@@ -11,6 +11,7 @@
 !*.md
 !libs
 !src/main/resources/*
+!gradle/wrapper/*
 
 # Even if they are in subdirectories
 !*/

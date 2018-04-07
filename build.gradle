@@ -2,11 +2,12 @@ group 'io.clhost'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    jcenter()
 
     flatDir {
         dirs 'libs'
@@ -21,11 +22,14 @@ dependencies {
 
     // mail
     compile group: 'javax.mail', name: 'mail', version: '1.4.5'
-    compile group: 'javax.mail', name: 'smpt', version: '1.4.4'
 
     //database
     compile 'org.hibernate:hibernate-core:5.2.15.Final'
     compile 'org.hibernate:hibernate-c3p0:5.2.15.Final'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
     compile 'com.mchange:c3p0:0.9.5.2'
+}
+
+run {
+    mainClassName = "io.clhost.devopstask.core.TaskManager"
 }

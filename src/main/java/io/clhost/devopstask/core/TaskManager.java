@@ -71,7 +71,7 @@ public class TaskManager {
                     for (OverloadMessage o : messages) {
                         builder.append(o.getText());
                     }
-                    //mailService.send(new Mail("PANIC!!! Overload report.", builder.toString()));
+                    mailService.send(new Mail("PANIC!!! Overload report.", builder.toString()));
                     System.out.println(new Mail("PANIC!!! Overload report.", builder.toString()));
                 }
 
