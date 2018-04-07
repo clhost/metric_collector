@@ -24,6 +24,7 @@ public class TaskManager {
     private final MailService mailService;
     private final ReportService reportService;
     private final Timer timer;
+    private final Checker checker;
     private final StringBuilder builder;
 
     public TaskManager() {
@@ -31,6 +32,7 @@ public class TaskManager {
         this.sshService = new SshService();
         this.mailService = new MailService();
         this.reportService = new ReportService();
+        this.checker = new Checker();
         this.builder = new StringBuilder();
     }
 
@@ -45,6 +47,7 @@ public class TaskManager {
             private RAMInfo ramInfo;
             private CPUInfo cpuInfo;
             private DisksInfo diskInfo;
+            private List<OverloadMessage> messages;
 
             @Override
             public void run() {
@@ -54,14 +57,24 @@ public class TaskManager {
                 cpuInfo = sshService.getCpuInfo();
                 diskInfo = sshService.getDisksInfo();
 
-                List<OverloadMessage> messages = Checker.checkOverload(ramInfo, cpuInfo, diskInfo);
-
+                messages = checker.checkOverload(ramInfo, cpuInfo, diskInfo);
                 if (!messages.isEmpty()) {
                     for (OverloadMessage o : messages) {
                         builder.append(o.getText());
                     }
                     mailService.send(new Mail("PANIC!!! Overload report.", builder.toString()));
+                    System.out.println(new Mail("PANIC!!! Overload report.", builder.toString()));
                 }
+
+                messages = checker.checkIncrease(ramInfo, cpuInfo, diskInfo);
+                if (!messages.isEmpty()) {
+                    for (OverloadMessage o : messages) {
+                        builder.append(o.getText());
+                    }
+                    //mailService.send(new Mail("PANIC!!! Overload report.", builder.toString()));
+                    System.out.println(new Mail("PANIC!!! Overload report.", builder.toString()));
+                }
+
 
                 Report report = new Report();
 
@@ -72,6 +85,7 @@ public class TaskManager {
 
                 try {
                     System.out.println("Saved: \n" + report.toString());
+                    System.out.println();
                     reportService.save(report);
                 } catch (Exception e) {
                     e.printStackTrace();

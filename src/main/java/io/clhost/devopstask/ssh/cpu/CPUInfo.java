@@ -12,7 +12,8 @@ public class CPUInfo {
         this.usr = usr;
         this.sys = sys;
 
-        load = Double.parseDouble(usr) + Double.parseDouble(sys);
+        load = Double.parseDouble(usr.replace(',', '.')) +
+                Double.parseDouble(sys.replace(',', '.'));
     }
 
     public String getCpu() {

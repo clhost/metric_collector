@@ -66,8 +66,7 @@ public class Report {
 
     @Override
     public String toString() {
-        return "id: " + id + "\n" +
-                "\t" + ram + "\n" +
+        return  "\t" + ram + "\n" +
                 "\t" + cpu + "\n" +
                 "\t" + disk + "\n";
     }
