@@ -52,14 +52,13 @@ public class TaskManager {
 
             @Override
             public void run() {
-                builder.setLength(0);
-
                 ramInfo = sshService.getRamInfo();
                 cpuInfo = sshService.getCpuInfo();
                 diskInfo = sshService.getDisksInfo();
 
                 messages = checker.checkOverload(ramInfo, cpuInfo, diskInfo);
                 if (!messages.isEmpty()) {
+                    builder.setLength(0);
                     for (OverloadMessage o : messages) {
                         builder.append(o.getText());
                     }
@@ -69,6 +68,7 @@ public class TaskManager {
 
                 messages = checker.checkIncrease(ramInfo, cpuInfo, diskInfo);
                 if (!messages.isEmpty()) {
+                    builder.setLength(0);
                     for (OverloadMessage o : messages) {
                         builder.append(o.getText());
                     }
